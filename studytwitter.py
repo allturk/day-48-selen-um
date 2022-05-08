@@ -33,23 +33,40 @@ search.send_keys(Keys.ENTER)
 time.sleep(2)
 last=wait.until(EC.visibility_of_element_located((By.XPATH,'//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[2]/nav/div/div[2]/div/div[2]/a')))
 last.click()
+time.sleep(3)
 
 countadd = 0
-for i in range(0,3):
-    twit=wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR,'[data-testid="tweet"]')))
-    user=wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'article .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')))
-
-    for item in twit:
-        user_acc = user[twit.index(item)].text
-        if "@" in item.text:
-
-            print(item.text)
-            print("********************************")
-        else:
-            print(item.text)
-        countadd += 1
+# for i in range(0,3):
+#     twit=wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR,'[data-testid="tweet"]')))
+#     user=wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'article .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')))
+#
+#     for item in twit:
+#         user_acc = user[twit.index(item)].text
+#         if "@" in item.text:
+#
+#             print(item.text)
+#             print("********************************")
+#         else:
+#             print(item.text)
+#         countadd += 1
+#     htmlp=browser.find_element(By.TAG_NAME,"html")
+#     htmlp.send_keys(Keys.PAGE_DOWN)
+for i in range(0,4):
+    time.sleep(2)
     htmlp=browser.find_element(By.TAG_NAME,"html")
     htmlp.send_keys(Keys.PAGE_DOWN)
+    time.sleep(2)
+twit=wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR,'[data-testid="tweet"]')))
+user=wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'article .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')))
+for item in twit:
+    user_acc = user[twit.index(item)].text
+    if "@" in item.text:
+
+        print(item.text)
+        print("********************************")
+    else:
+        print(item.text)
+    countadd += 1
 print(f"Toplam: {countadd} tweet")
 
 browser.quit()
