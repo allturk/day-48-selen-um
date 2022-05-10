@@ -51,20 +51,27 @@ countadd = 0
 #         countadd += 1
 #     htmlp=browser.find_element(By.TAG_NAME,"html")
 #     htmlp.send_keys(Keys.PAGE_DOWN)
-for i in range(0,4):
-    time.sleep(2)
+for i in range(0,5):
+    #time.sleep(2)
     htmlp=browser.find_element(By.TAG_NAME,"html")
     htmlp.send_keys(Keys.PAGE_DOWN)
-    time.sleep(2)
+    #time.sleep(2)
 twit=wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR,'[data-testid="tweet"]')))
 user=wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'article .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')))
+#likes=wait.until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR,'[aria-label*="Beğeni"]')))
+
+#for like in likes:
+#    print(like.accessible_name)
+#    like.click()
+
+
 for item in twit:
     user_acc = user[twit.index(item)].text
     if "@" in item.text:
 
         print(item.text)
         print("********************************")
-    else:
+    elif "Sponsorlu" not in item.text:
         print(item.text)
     countadd += 1
 print(f"Toplam: {countadd} tweet")
